@@ -6,10 +6,10 @@
  * Time: 11:12
  */
 require_once("Users.php");
-$userName = "root";
-$host = "localhost";
-$pass = "coderslab";
-$dbName = "tweeter";
+$userName = "";
+$host = "";
+$pass = "";
+$dbName = "";
 
 $conn = new mysqli($host, $userName, $pass, $dbName);
 
