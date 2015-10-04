@@ -16,6 +16,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
 
 <form method="POST" action="edit_user.php">
-    <input type="text" name="description" placeholder="Enter some text">
+    <input type="text" name="description" placeholder="Enter new description">
     <input type="submit" value="Update">
 </form>

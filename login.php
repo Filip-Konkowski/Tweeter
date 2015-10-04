@@ -1,5 +1,4 @@
 <?php
-
 require_once("src/connection.php");
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -27,14 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 <body>
 <h1>Witaj</h1>
 
-    <form action="login.php" method="POST">
-        <input type="text" name="mail" placeholder="Enter email">
-        <input type="password" name="password" placeholder="Enter password">
-        <input type="submit" value="login">
-    </form>
-    <div class="alert-warning">
-        <?php echo ($error); ?>
-    </div>
+<form action="login.php" method="POST">
+    <input type="text" name="mail" placeholder="Enter email">
+    <input type="password" name="password" placeholder="Enter password">
+    <input type="submit" value="login">
+</form>
+<div class="alert-warning">
+    <?php //echo ($error); ?>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
