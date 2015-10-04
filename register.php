@@ -5,7 +5,7 @@ session_start();
 
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
-    $newUser = Users::register($_POST["email"], $_POST["password1"], $_POST["password2"], $_POST["description"]);
+    $newUser = Users::register($_POST["email"], $_POST["password1"], $_POST["password2"], $_POST["description"], $_POST["name"]);
     if($newUser != false){
         $_SESSION["user"] =$newUser;
         header("location: main.php");
@@ -19,6 +19,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <input type="text" name="email" placeholder="Enter your email">
     <input type="password" name="password1" placeholder="Enter password">
     <input type="password" name="password2" placeholder="Enter password">
+    <input type="text" name="name" placeholder="Enter your name">
     <input type="text" name="description" placeholder="Enter some text">
     <input type="submit" value="Register">
 </form>
