@@ -32,7 +32,17 @@ class Tweet{
         }
         return false;
     }
-
+    static public function getTweetById ($id){
+        $sql = "SELECT * FROM Tweets WHERE tweet_id=$id";
+        $result = self::$conn->query($sql);
+        if($result == true){
+            if($result->num_rows == 1){
+                $row = $result->fetch_assoc();
+                $tweetById = new Tweet($row["id"], $row["userId"], $row["text"], $row["creationDate"]);
+                return $tweetById;
+            }
+        }
+    }
     static public function loadAllTweets(){
         $ret = [];
         $sql = "SELECT * FROM Tweets ORDER BY creation_date DESC";
@@ -62,6 +72,7 @@ class Tweet{
                                                 $row["text"],
                                                 $row["creation_date"]);
                     $ret[] = $tweetsByUserId;
+
                 }
             }
         }
@@ -73,8 +84,13 @@ class Tweet{
         $this->setText($newText);
         $this->userId = $newUserId;
     }
-    // Create tweet = robimy tak samo jak registerUser
-
+/*
+    public function updateTweet (){
+        $sql = "UPDATE Tweets SET text={$this->text} WHERE tweet_id={$this->id} ";
+        $result = self::$conn->query($sql);
+        return $result;
+    }
+*/
     public function getId()
     {
         return $this->id;
