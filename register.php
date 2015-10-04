@@ -12,12 +12,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     }
     echo "Blad podczas rejestracji";
 }
-/*
-if (isset($_SESSION["user"]) == false){
-    header("location: main.php");
-}
-$myUser = $_SESSION["user"];
-*/
+
 ?>
 
 <form method="POST" action="register.php">
