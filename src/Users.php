@@ -6,16 +6,15 @@ CREATE TABLE Users (
   email VARCHAR(60) UNIQUE,
   password CHAR(60),
   description VARCHAR(255),
-  PRIMARY KEY (user_id)
- )
+  PRIMARY KEY (user_id));
 
-
+  ALTER TABLE Users ADD user_name VARCHAR(30);
  */
 
 class Users{
     static private $conn;
     private $id;
-   // private $userName;
+    private $userName;
     private $email;
     private $description;
 
@@ -31,24 +30,24 @@ class Users{
                 $row = $result->fetch_assoc();
 
                 if (password_verify($password, $row["password"])){
-                    $loggedUser = new Users ($row["user_id"], $row["email"], $row["description"] );
+                    $loggedUser = new Users ($row["user_id"], $row["email"], $row["description"], $row["user_name"]);
                     return $loggedUser;
                 }
             }
         }
     }
-    static public function  register($newEmail, $password, $password2, $newDescription){
+    static public function register($newEmail, $password, $password2, $newDescription, $newUserName){
         if ($password != $password2){
             return false;
         }
 
         $hassedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $sql = "INSERT INTO Users (email, password, description)
-        VALUES ('$newEmail', '$hassedPassword', '$newDescription')";
+        $sql = "INSERT INTO Users (email, password, description, user_name)
+        VALUES ('$newEmail', '$hassedPassword', '$newDescription', '$newUserName')";
         $result = self::$conn->query($sql);
         if($result == true){
-            $newUser = new Users(self::$conn->insert_id, $newEmail, $newDescription);
+            $newUser = new Users(self::$conn->insert_id, $newEmail, $newDescription, $newUserName);
             return $newUser;
         }
         return false;
@@ -59,7 +58,7 @@ class Users{
         if($return == true){
             if($return->num_rows == 1){
                 $row = $return->fetch_assoc();
-                $loggedUser = new Users($row["user_id"], $row["email"], $row["description"] );
+                $loggedUser = new Users($row["user_id"], $row["email"], $row["description"], $row["user_name"] );
                 return$loggedUser;
             }
         }
@@ -71,17 +70,18 @@ class Users{
         if ($result == true){
             if($result->num_rows > 0 ){
                 while ($row = $result->fetch_assoc()){
-                    $loadedUser = new Users($row["user_id"], $row["email"], $row["description"]);
+                    $loadedUser = new Users($row["user_id"], $row["email"], $row["description"], $row["user_name"]);
                     $ret[] = $loadedUser;
                 }
             }
         }
         return $ret;
     }
-    public function __construct($newId, $newEmail, $newDescription){
+    public function __construct($newId, $newEmail, $newDescription, $newUserName){
         $this->id =$newId;
         $this->email = $newEmail;
         $this->description = $newDescription;
+        $this->setUserName($newUserName);
 
     }
 
@@ -113,16 +113,16 @@ class Users{
     public function getId(){
         return $this->id;
     }
- /*   public function setUserName($newUserName)
+    public function setUserName($newUserName)
     {
         if (is_string($newUserName) && strlen($newUserName) < 60) {
             $this->userName = $newUserName;
         }
     }
-    public function getUseName(){
+    public function getUserName(){
             return $this->userName;
     }
- */
+
     public function getEmail (){
         return $this->email;
     }
