@@ -38,7 +38,7 @@ class Tweet{
         if($result == true){
             if($result->num_rows == 1){
                 $row = $result->fetch_assoc();
-                $tweetById = new Tweet($row["id"], $row["userId"], $row["text"], $row["creationDate"]);
+                $tweetById = new Tweet($row["tweet_id"], $row["user_id"], $row["text"], $row["creation_date"]);
                 return $tweetById;
             }
         }
