@@ -12,25 +12,38 @@ if($_SERVER["REQUEST_METHOD"] === "POST" ){
 }
 echo ("Witaj " . $myUser->getEmail());
 ?>
+<html>
+<head>
+
+</head>
+<body>
+
+
+
 <form action="main.php" method="POST" >
     <input type="text" name="tweet" placeholder="dodaj tweet">
     <input type="submit" value="send">
     <a href='messagesWindow.php?user_id=<?php echo $myUser->getId(); ?>'>create message</a>
 </form>
-
+    <a href='show_user.php?user_id=<?php echo $myUser->getId()?>'>User Profile</a><br>
+    <br><a href='show_my_tweets.php?user_id=<?php echo $myUser->getId(); ?>'>Show my tweets</a><br>
 <?php
-echo "<a href='show_user.php?user_id={$myUser->getId()}'>User Profile</a><br>";
+
 $allTweets = Tweet::loadAllTweets();
-//$allUsers = Users::getUserById();
+
 foreach ($allTweets as $tweet){
-    //echo "Tweet by: ".Users::getUsersById($tweet->getUserId()). "<br>"; // nie dziala
+
     $userId = $tweet->getUserId();
     $allUsers = Users::getUserById($userId);
     echo "<br>Tweet by user name: {$allUsers->getUserName()}<br>";
     echo "Text: {$tweet->getText()}<br>";
     echo "Creation Date: {$tweet->getCreationDate()}<br>";
-    echo "<a href='show_tweet.php?tweet_id={$tweet->getId()}'>SHOW Tweet </a><br> ";
+    echo "<a href='comment_tweet.php?tweet_id={$tweet->getId()}'>SHOW Tweet </a><br> ";
 }
 
 ?>
 
+
+</body>
+
+</html>
