@@ -84,13 +84,13 @@ class Tweet{
         $this->setText($newText);
         $this->userId = $newUserId;
     }
-/*
-    public function updateTweet (){
-        $sql = "UPDATE Tweets SET text={$this->text} WHERE tweet_id={$this->id} ";
+
+    public function updateTweet ($text){
+        $sql = "UPDATE Tweets SET text={$text} WHERE tweet_id={$this->id} ";
         $result = self::$conn->query($sql);
         return $result;
     }
-*/
+
     public function getId()
     {
         return $this->id;
