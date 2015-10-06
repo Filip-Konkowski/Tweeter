@@ -92,25 +92,6 @@ class Users{
     }
 
 
-    public function createTweet($tweetText){
-        // TO DO After implementing tweet add function to create new Tweet by user
-    }
-    public function getAllTweets(){
-        $ret = [];
-        // TO DO After implementing tweet add function load all new Tweet by user
-        return $ret;
-    }
-    public function createComment($commentText){
-
-        // TO DO After implementing comment add function to create new Comment by user
-
-    }
-
-    public function getAllComment($commentText){
-        $ret = [];
-        // TO DO After implementing comment add function load all new comment by user
-        return $ret;
-    }
     public function getId(){
         return $this->id;
     }
