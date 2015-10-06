@@ -10,7 +10,8 @@ $myUser = $_SESSION["user"];
 $tweetIdToShow = $_GET["tweet_id"];
 $tweetToShow = Tweet::getTweetById($tweetIdToShow);
 if($_SERVER["REQUEST_METHOD"] === "POST"){
-    $tweetToShow->updateTweet($_POST["editTweetText"]);
+    $tweetToShow->setText($_POST["editedTweetText"]);
+    $tweetToShow->updateTweet();
 }
 
 
@@ -24,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 <body>
 <form method='POST' action='edit_tweet.php?tweet_id=<?php echo $_GET["tweet_id"]; ?>'>
     <br>
-    <input type='text' name='editTweetText'>
+    <input type='text' name='editedTweetText'>
     <input type='submit' value='edit tweet'>
     <a href="main.php">link to main</a>
 </form>
