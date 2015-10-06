@@ -89,8 +89,9 @@ class Users{
         $sql = "UPDATE Users SET description='{$this->description}' WHERE user_id='{$this->id}'";
         $result = self::$conn->query($sql);
         return $result;
-
     }
+
+
     public function createTweet($tweetText){
         // TO DO After implementing tweet add function to create new Tweet by user
     }
