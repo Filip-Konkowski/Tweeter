@@ -17,3 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
     }
 
 }
+?>
+<html>
+<head>
+
+</head>
+<body>
+    <a href="edit_user.php">Edit Profile</a>
+</body>
+</html>

@@ -19,3 +19,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <input type="text" name="description" placeholder="Enter new description">
     <input type="submit" value="Update">
 </form>
+
+<?php
+
+echo "Description:  {$myUser->getDescription()}";
