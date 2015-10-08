@@ -36,10 +36,6 @@ class Message {
         return false;
     }
 
-    static public function delMessage($messageId){
-        $sql = "";
-    }
-
     static public function viewAllOutboxByAuthorId($authorId){
         $ret = [];
         $sql = "SELECT * FROM Messages WHERE author_id='$authorId'";
